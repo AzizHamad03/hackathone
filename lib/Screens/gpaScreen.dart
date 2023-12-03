@@ -5,15 +5,15 @@ import 'package:flutter_tournament/Widgets/gpaScreenWidgets/gpaCard.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final Map<String, double> termMap = {
-  "Term222": 3.75,
-  "Term232": 3.60,
-  "Term211": 3.4,
-  "Term241": 3.75,
+  "Term211": 3.75,
   "Term212": 3.60,
-  "Term213": 3.4,
+  "Term213": 3.40,
+  "Term221": 3.75,
+  "Term222": 3.60,
+  "Term223": 3.40,
   "Term231": 3.75,
-  "Term22": 3.60,
-  "Term242": 3.4
+  "Term232": 3.60,
+  "Term241": 3.40
 };
 
 class gpaScreen extends StatefulWidget {

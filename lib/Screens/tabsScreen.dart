@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_tournament/Screens/Calander.dart';
 import 'package:flutter_tournament/Screens/HomePage.dart';
@@ -10,6 +12,7 @@ import 'package:flutter_tournament/demo3.dart';
 
 
 class TabsScreen extends StatefulWidget {
+
   const TabsScreen({super.key});
 
   @override
@@ -19,11 +22,58 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+
   int _selectedPageIndex = 0;
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
     });
+  }
+    Future<void> _makeRequest(String url, Map<String, String> headers,
+      Map<String, dynamic> requestBody) async {
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: headers,
+        body: jsonEncode(requestBody),
+      );
+    } catch (error) {}
+  }
+
+  Future<void> _sendFirstCurlRequest() async {
+    const url = 'https://graph.facebook.com/v18.0/122152617527380/messages';
+    const token =
+        'EAAUdgS8AZAl0BOwkHaFA2ufPZAv8yzk1EZCwnvMefvqIjrf2xYzPXA7PrLQmTmNhNWQJCtY7DLdEfROMKICXheFB1IGhFMTefIfKTXLZB6caQzmtbb9p2nh1AtN2jGZBf1kaeZByqGp5531unhalnZBa6e82sM9l8vwhgc6SNuZAZAUvYZAmzfmcPh7SWfc631nHzLVLktUIZBPBeZAdbPlN3ab9'; // Replace with your actual Facebook token
+
+    final Map<String, dynamic> requestBody = {
+      "messaging_product": "whatsapp",
+      "recipient_type": "individual",
+      "to": 966500714070,
+      "type": "template",
+      "template": {
+        "name": "kfupm_reminder",
+        "language": {
+          "code": "en",
+        },
+        "components": [
+          {
+            "type": "body",
+            "parameters": [
+              {"type": "text", "text": "Mohamed"},
+              {"type": "text", "text": "Math101 Homework"},
+              {"type": "text", "text": "Saturday"},
+            ],
+          }
+        ]
+      }
+    };
+
+    final headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json',
+    };
+
+    await _makeRequest(url, headers, requestBody);
   }
 
   @override
@@ -33,6 +83,7 @@ class _TabsScreenState extends State<TabsScreen> {
       _activePage = const DarajatiPage();
     }
     if (_selectedPageIndex == 2) {
+      _sendFirstCurlRequest();
       _activePage = const MyCalenderScreen();
     }
     if (_selectedPageIndex == 3) {
@@ -64,7 +115,7 @@ class _TabsScreenState extends State<TabsScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.search_outlined,
+                Icons.list,
               ),
               label: "CC",
             ),
