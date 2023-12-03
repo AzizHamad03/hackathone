@@ -20,10 +20,9 @@ class nextToDo extends StatelessWidget {
   }
 
   Future<void> _sendFirstCurlRequest() async {
-    const url = 'https://graph.facebook.com/v18.0/122152617527380/messages';
-    const token =
-        'EAAUdgS8AZAl0BOwkHaFA2ufPZAv8yzk1EZCwnvMefvqIjrf2xYzPXA7PrLQmTmNhNWQJCtY7DLdEfROMKICXheFB1IGhFMTefIfKTXLZB6caQzmtbb9p2nh1AtN2jGZBf1kaeZByqGp5531unhalnZBa6e82sM9l8vwhgc6SNuZAZAUvYZAmzfmcPh7SWfc631nHzLVLktUIZBPBeZAdbPlN3ab9'; // Replace with your actual Facebook token
-
+    const url = 'https://graph.facebook.com/v18.0/{replace this with your own template number}/messages';
+    const token = '{Replace with WhatsApp API token}'; 
+    
     final Map<String, dynamic> requestBody = {
       "messaging_product": "whatsapp",
       "recipient_type": "individual",
