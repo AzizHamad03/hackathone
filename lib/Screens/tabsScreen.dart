@@ -48,7 +48,7 @@ class _TabsScreenState extends State<TabsScreen> {
     final Map<String, dynamic> requestBody = {
       "messaging_product": "whatsapp",
       "recipient_type": "individual",
-      "to": 966500714070,
+      "to":  "{Phone Number}",
       "type": "template",
       "template": {
         "name": "kfupm_reminder",
